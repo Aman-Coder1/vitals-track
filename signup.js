@@ -1,14 +1,15 @@
-// 1. YOUR FIREBASE CONFIGURATION (Get this from Firebase Console)
+// 1. YOUR REAL FIREBASE CONFIGURATION
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    projectId: "YOUR_PROJECT",
-    storageBucket: "YOUR_PROJECT.appspot.com",
-    messagingSenderId: "YOUR_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyAy24wgymy-g4vDM8tmMLnV9SBhMjHS7jg",
+    authDomain: "vitals-tracker-dcb62.firebaseapp.com",
+    projectId: "vitals-tracker-dcb62",
+    storageBucket: "vitals-tracker-dcb62.firebasestorage.app",
+    messagingSenderId: "114062862225",
+    appId: "1:114062862225:web:d0b449da9f663440521c30",
+    measurementId: "G-J3ST882KH4"
 };
 
-// Initialize Firebase
+// Initialize Firebase (Using the Compat version already in your HTML)
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
