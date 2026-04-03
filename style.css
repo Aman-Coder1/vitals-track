@@ -1,0 +1,232 @@
+/* LIGHT THEME ROOT (Focus on Energy and Health) */
+:root {
+    --bg-pure: #ffffff;
+    --bg-section: #fbfdff; /* Extremely light blue-tint */
+    --text-main: #1e293b; /* Dark navy, better than black */
+    --text-muted: #64748b;
+    --primary: #0ea5e9; /* Energetic Sky Blue */
+    --accent: #818cf8; /* Soft Indigo */
+    
+    /* Glsasmorphism/Light Panel effect */
+    --glass-light: rgba(255, 255, 255, 0.7);
+    --border-light: rgba(14, 165, 233, 0.1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-main);
+    background-color: var(--bg-pure);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* 1. THE MOVING ORB ENVIRONMENT */
+.background-env {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px); /* This gives that soft light feel */
+    opacity: 0.5;
+    animation: orbFloat 25s infinite linear;
+}
+
+.orb-1 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+    top: -10%; right: 10%;
+}
+
+.orb-2 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, #f472b6 0%, transparent 70%); /* Soft Pink/Energy */
+    bottom: -5%; left: 5%;
+    animation-delay: -5s;
+}
+
+/* Orb Movement Keyframes */
+@keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(100px, 50px); }
+    66% { transform: translate(-50px, 100px); }
+}
+
+/* THE SCROLL CONTAINER ( GSAP will manage this) */
+.scroll-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* PUBLIC NAVBAR (Light & Airy) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+    backdrop-filter: blur(10px); /* Blurs orbs slightly as they pass behind */
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.logo span { color: var(--primary); }
+
+.nav-actions { display: flex; gap: 15px; align-items: center; }
+
+/* HERO SECTION */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px 0;
+    min-height: 80vh;
+}
+
+.hero-content { flex: 0 0 55%; }
+
+.ai-badge {
+    background: rgba(14, 165, 233, 0.08);
+    color: var(--primary);
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 15px 0;
+    color: var(--text-main);
+}
+
+h1 span {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 550px;
+    margin-bottom: 40px;
+}
+
+/* BUTTONS (Light and Shiny) */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), #38bdf8);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 20px rgba(14, 165, 233, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(14, 165, 233, 0.3);
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-text:hover { color: var(--primary); }
+
+.large { padding: 18px 36px; font-size: 1.1rem; }
+
+/* 2. THE CUSTOM AI VISUAL (Shape Morphing!) */
+.hero-visual {
+    flex: 0 0 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ai-core-container {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* This is the heart of the animation: An organic, pulsing light */
+.ai-core-pulse {
+    width: 150px; height: 150px;
+    background: radial-gradient(circle, #e0f2fe 0%, transparent 70%);
+    border-radius: 50%;
+    position: absolute;
+    
+    /* Apply custom pulse animation */
+    animation: coreBreathing 6s infinite ease-in-out;
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.3);
+}
+
+/* The scanning line that floats up and down */
+.ai-scanner-line {
+    width: 180px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    position: absolute;
+    border-radius: 2px;
+    animation: scannerMove 4s infinite linear;
+}
+
+.ai-status {
+    position: absolute;
+    bottom: 20px;
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* Keyframes for our custom Core breathing animation */
+@keyframes coreBreathing {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+        filter: blur(10px);
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.9;
+        filter: blur(5px);
+        background: radial-gradient(circle, #fdf2f8 0%, transparent 70%); /* Shift color slightly */
+    }
+}
+
+/* Keyframes for the scanner */
+@keyframes scannerMove {
+    0%, 100% { transform: translateY(-70px); opacity: 0; }
+    20%, 80% { opacity: 1; }
+    50% { transform: translateY(70px); }
+}

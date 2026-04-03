@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Vitals Tracker | AI Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="signup.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <div class="background-env">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="signup-container animate__animated animate__zoomIn">
+        <div class="signup-card">
+            <div class="card-left">
+                <div class="logo">Vitals<span>Tracker</span></div>
+                <h2>Your AI journey starts here.</h2>
+                <div class="benefits-list">
+                    <div class="b-item">✦ Personalized AI Workouts</div>
+                    <div class="b-item">✦ Stress & Recovery Insights</div>
+                    <div class="b-item">✦ 100% Free Forever</div>
+                </div>
+            </div>
+
+            <div class="card-right">
+                <div class="form-wrapper">
+                    <h3>Create Account</h3>
+                    <button class="btn-google" id="googleBtn">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/layout/google.svg" width="18">
+                        Continue with Google
+                    </button>
+                    
+                    <div class="divider"><span>or email</span></div>
+                    
+                    <form id="signupForm">
+                        <input type="text" id="userName" placeholder="Full Name" required>
+                        <input type="email" id="userEmail" placeholder="Email Address" required>
+                        <input type="password" id="userPassword" placeholder="Create Password" required>
+                        <button type="submit" class="btn-submit">Start Free Trial →</button>
+                    </form>
+                    <p class="footer-text">Already have an account? <a href="login.html">Log in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+:root {
+    --primary: #0ea5e9;
+    --text-main: #1e293b;
+    --bg-pure: #ffffff;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8fafc;
+    overflow: hidden;
+}
+
+/* Moving Orbs */
+.background-env { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; animation: float 20s infinite alternate; }
+.orb-1 { width: 500px; height: 500px; background: #0ea5e9; top: -10%; left: -10%; }
+.orb-2 { width: 400px; height: 400px; background: #f472b6; bottom: -10%; right: -10%; }
+
+@keyframes float { from { transform: translate(0,0); } to { transform: translate(50px, 50px); } }
+
+.signup-card {
+    display: flex;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    width: 850px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.4);
+    overflow: hidden;
+}
+
+.card-left {
+    flex: 1;
+    background: linear-gradient(135deg, #0ea5e9, #818cf8);
+    padding: 50px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-left .logo { font-size: 1.5rem; font-weight: 800; margin-bottom: 30px; }
+.card-left h2 { font-size: 2rem; line-height: 1.2; }
+.b-item { margin: 12px 0; font-weight: 600; font-size: 0.9rem; }
+
+.card-right { flex: 1.2; padding: 50px; background: white; }
+
+.btn-google {
+    width: 100%; padding: 12px; border: 1px solid #e2e8f0; background: white;
+    border-radius: 12px; font-weight: 600; display: flex; align-items: center;
+    justify-content: center; gap: 10px; cursor: pointer; transition: 0.2s;
+}
+
+.divider { text-align: center; margin: 20px 0; border-bottom: 1px solid #f1f5f9; line-height: 0.1em; }
+.divider span { background: #fff; padding: 0 10px; color: #94a3b8; font-size: 0.8rem; }
+
+input {
+    width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 12px;
+    border: 1px solid #e2e8f0; box-sizing: border-box; font-family: inherit;
+}
+
+.btn-submit {
+    width: 100%; padding: 16px; background: var(--primary); color: white;
+    border: none; border-radius: 12px; font-weight: 700; cursor: pointer;
+    box-shadow: 0 10px 15px rgba(14, 165, 233, 0.3);
+}

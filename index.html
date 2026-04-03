@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitals Tracker | Your Breath of Fresh AI</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+    
+    <div class="background-env">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div id="app" class="scroll-container">
+        
+        <nav class="navbar animate__animated animate__fadeInDown">
+            <div class="logo">Vitals<span>Tracker</span></div>
+            <div class="nav-actions">
+                <button class="btn-text">Features</button>
+                <button class="btn-primary" onclick="showAuth()">Analyze My Health →</button>
+            </div>
+        </nav>
+
+        <main class="hero parallax-layer" data-speed="2">
+            <div class="hero-content animate__animated animate__fadeInLeft">
+                <span class="ai-badge">AI Wellness Guide</span>
+                <h1>Know Your <br>Vitals, Own Your <span>Life.</span></h1>
+                <p>Knowledge is clarity. Vitals Tracker uses intuitive AI to synthesize your mental health, nutrition, and training into a clear path for emotional and physical well-being.</p>
+                <div class="cta-group">
+                   <button class="btn-primary large" onclick="window.location.href='signup.html'">Start Free Trial</button>
+                    <button class="btn-text">Watch How AI Personalizes Your Plan</button>
+                </div>
+            </div>
+            
+            <div class="hero-visual animate__animated animate__zoomIn">
+                <div class="ai-core-container">
+                    <div class="ai-core-pulse"></div> <div class="ai-scanner-line"></div> <p class="ai-status">AI Analyzing Vitals...</p>
+                </div>
+            </div>
+        </main>
+
+        </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
