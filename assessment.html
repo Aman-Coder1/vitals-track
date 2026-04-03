@@ -3,81 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Assessment | Vitals Tracker</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"> <style>
+    <title>AI Health Scan | Vitals Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="signup.css"> <style>
         .assessment-card {
-            max-width: 600px; margin: 100px auto; padding: 40px;
-            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);
-            border-radius: 24px; text-align: center; border: 1px solid #e2e8f0;
+            max-width: 500px; margin: 50px auto; padding: 40px;
+            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(15px);
+            border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center; border: 1px solid rgba(255,255,255,0.5);
         }
-        .step { display: none; }
-        .step.active { display: block; animation: fadeIn 0.5s; }
-        .option-btn {
-            display: block; width: 100%; padding: 15px; margin: 10px 0;
-            border: 1px solid #e2e8f0; border-radius: 12px; background: white;
-            cursor: pointer; transition: 0.3s; font-weight: 600;
-        }
-        .option-btn:hover { border-color: var(--primary); background: #f0f9ff; color: var(--primary); }
-        .loading-bar { width: 100%; height: 4px; background: #e2e8f0; border-radius: 2px; margin-top: 20px; overflow: hidden; }
-        .progress { width: 0%; height: 100%; background: var(--primary); transition: 0.5s; }
+        .vitals-form { display: flex; flex-direction: column; gap: 20px; text-align: left; }
+        label { font-weight: 600; color: #1e293b; font-size: 0.9rem; }
+        input[type="range"] { width: 100%; cursor: pointer; accent-color: #0ea5e9; }
+        .val-display { float: right; color: #0ea5e9; font-weight: 800; }
+        .ai-status-box { display: none; padding: 20px; background: #f0f9ff; border-radius: 15px; margin-top: 20px; }
+        .pulse { animation: pulse-blue 2s infinite; }
+        @keyframes pulse-blue { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
     </style>
 </head>
-<body class="light-theme">
+<body>
     <div class="background-env">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
     </div>
 
-    <div class="assessment-card">
-        <div class="loading-bar"><div class="progress" id="progress"></div></div>
-        
-        <div class="step active" id="step1">
-            <h2>What is your primary focus?</h2>
-            <p>This helps the AI tune your daily vitals check.</p>
-            <button class="option-btn" onclick="nextStep(2)">Mental Clarity & Stress</button>
-            <button class="option-btn" onclick="nextStep(2)">Physical Performance</button>
-            <button class="option-btn" onclick="nextStep(2)">Better Sleep & Recovery</button>
-        </div>
+    <div class="assessment-card animate__animated animate__fadeInUp">
+        <div class="logo" style="color: #0ea5e9; margin-bottom: 20px; font-weight: 800;">AI<span>SCAN</span></div>
+        <h2 style="margin-bottom: 10px;">Initialize Your Vitals</h2>
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 30px;">Input your current state for the AI to calibrate.</p>
 
-        <div class="step" id="step2">
-            <h2>Current Activity Level?</h2>
-            <button class="option-btn" onclick="nextStep(3)">Sedentary (Office/Study)</button>
-            <button class="option-btn" onclick="nextStep(3)">Active (3-4 workouts/week)</button>
-            <button class="option-btn" onclick="nextStep(3)">Athlete (Daily intensity)</button>
-        </div>
+        <form class="vitals-form" id="vitalsForm">
+            <div class="input-group">
+                <label>Stress Level <span class="val-display" id="stressVal">5</span></label>
+                <input type="range" id="stress" min="1" max="10" value="5" oninput="document.getElementById('stressVal').innerText = this.value">
+            </div>
 
-        <div class="step" id="step3">
-            <h2 id="ai-status">Calibrating AI Model...</h2>
-            <p>Synthesizing your health profile.</p>
+            <div class="input-group">
+                <label>Energy Level <span class="val-display" id="energyVal">5</span></label>
+                <input type="range" id="energy" min="1" max="10" value="5" oninput="document.getElementById('energyVal').innerText = this.value">
+            </div>
+
+            <div class="input-group">
+                <label>Last Night's Sleep (Hours) <span class="val-display" id="sleepVal">7</span></label>
+                <input type="range" id="sleep" min="1" max="12" value="7" oninput="document.getElementById('sleepVal').innerText = this.value">
+            </div>
+
+            <button type="submit" class="btn-submit">Analyze My Health →</button>
+        </form>
+
+        <div id="aiStatus" class="ai-status-box">
+            <p class="pulse" id="statusText" style="font-weight: 600; color: #0ea5e9;">Connecting to Neural Core...</p>
         </div>
     </div>
 
     <script>
-        let currentStep = 1;
-        function nextStep(step) {
-            document.getElementById(`step${currentStep}`).classList.remove('active');
-            currentStep = step;
-            document.getElementById(`step${currentStep}`).classList.add('active');
-            
-            // Update Progress Bar
-            const progress = (currentStep / 3) * 100;
-            document.getElementById('progress').style.width = `${progress}%`;
+       document.getElementById('vitalsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // 1. Capture the data
+    const stress = parseInt(document.getElementById('stress').value);
+    const energy = parseInt(document.getElementById('energy').value);
+    const sleep = parseInt(document.getElementById('sleep').value);
 
-            if(step === 3) {
-                processAI();
-            }
-        }
+    // 2. Calculate a "Recovery Score" (Simple Logic)
+    // Formula: (Energy + Sleep - Stress) adjusted to a 1-10 scale
+    let recoveryScore = ((energy + sleep + (10 - stress)) / 3).toFixed(1);
 
-        function processAI() {
-            const status = document.getElementById('ai-status');
-            setTimeout(() => status.innerText = "Analyzing Stress Patterns...", 1000);
-            setTimeout(() => status.innerText = "Generating Daily Vitals...", 2000);
-            setTimeout(() => {
-                // Once finished, redirect to the actual dashboard
-                window.location.href = "index.html"; 
-            }, 3500);
-        }
+    // 3. UI Transition
+    document.getElementById('vitalsForm').style.display = 'none';
+    document.getElementById('aiStatus').style.display = 'block';
+    const status = document.getElementById('statusText');
+
+    // 4. Show the "Processing" steps
+    setTimeout(() => { status.innerText = "Syncing Local Data..."; }, 800);
+    setTimeout(() => { status.innerText = "Calculating Recovery Index..."; }, 1800);
+    setTimeout(() => { 
+        status.innerHTML = `Scan Complete! <br> <span style="font-size: 1.5rem; color: #0ea5e9;">Score: ${recoveryScore}/10</span>`; 
+    }, 3000);
+    
+    // 5. Save to LocalStorage (so the Dashboard can see it without a database)
+    localStorage.setItem('vitalsScore', recoveryScore);
+    localStorage.setItem('lastSleep', sleep);
+
+    // 6. Redirect to Dashboard
+    setTimeout(() => {
+        window.location.href = "index.html"; 
+    }, 5000);
+});
     </script>
 </body>
 </html>
